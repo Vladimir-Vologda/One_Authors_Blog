@@ -6,6 +6,9 @@ authors = ["Vladimir-Vologda <vologda2018@inbox.ru>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+Django = "^4.0.4"
+Pillow = "^9.1.0"
+psycopg2-binary = "^2.9.3"
 
 [tool.poetry.dev-dependencies]
 
