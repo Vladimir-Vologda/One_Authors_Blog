@@ -13,12 +13,13 @@ def article_img(instance, filename):
 
 
 class ArticleModel(models.Model):
-    author = models.ForeignKey(User, verbose_name=_('Author'), on_delete=models.CASCADE)
+    author = models.ForeignKey(User, verbose_name=_('Author'), on_delete=models.CASCADE, default='1')
     title = models.CharField(_('Article title'), max_length=70, unique=True)
     text = models.TextField(_('Article'))
     image = models.ImageField(_('Article image'), upload_to=article_img, default='default/article_default.jpg')
     creation_date = models.DateTimeField(_('Date of creation'), auto_now_add=True)
     update_date = models.DateTimeField(_('Update date'), auto_now=True)
+    is_published = models.BooleanField(_('Is published'), default=False)
     slug = models.SlugField(_('URL address'), unique=True, db_index=True)
 
     class Meta:
