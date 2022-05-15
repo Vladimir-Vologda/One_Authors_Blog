@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-start">
+
+        <div class="col-lg-3"></div>
+
+        <div class="col-lg-6">
+
+            {% if list_article %}
+
+            {% for article in list_article %}
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4 list-img">
+                        <img src="{{ MEDIA_URL }}{{ article.image.url }}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <a href="#">
+                                <h5 class="card-title">{{ article.title }}</h5>
+                            </a>
+                            <p class="card-text">{{ article.text|truncatechars:'25' }}</p>
+                            <p class="card-text">
+                                <small class="text-muted">{{ article.author }}</small>
+                                ~
+                                <small class="text-muted">{{ article.update_date }}</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+
+            <div class="center">
+                <h3 style="color:red">
+                    No Article's
+                </h3>
+            </div>
+
+            {% endif %}
+
+        </div>
+
+        <div class="col-lg-3"></div>
+
+    </div>
+</div>
+
+{% endblock %}
