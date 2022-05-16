@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from articles.models import ArticleModel
 
@@ -20,3 +20,13 @@ class ListArticleView(ListView):
         context['title'] = _("Article's")
         return context
 
+
+class DetailArticleView(DetailView):
+    model = ArticleModel
+    template_name = 'article/detail_article.html'
+    context_object_name = 'detail_article'
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailArticleView, self).get_context_data(**kwargs)
+        context['title'] = context['detail_article']
+        return context
